@@ -23,13 +23,7 @@ int main() {
         myfile.close();
     }
 
-    int highest = 0;
-    for (int num : calories)
-    {
-        if (num > highest) {
-            highest = num;
-        }
-    }
+    sort(calories.begin(), calories.end(), greater<int>());
 
-    cout << highest << endl;
+    cout << calories[0] + calories[1] + calories[2] << endl;
 }
