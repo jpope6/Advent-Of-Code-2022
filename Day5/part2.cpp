@@ -114,10 +114,24 @@ int main() {
 
     map<int, stack<char>> mymap = {{1, one}, {2, two}, {3, three}, {4, four}, {5, five}, {6, six}, {7, seven}, {8, eight}, {9, nine}};
 
+    stack<char> temp_stack;
+
     for (int i = 0; i < amount.size(); i++) {
         for (int j = 0; j < amount[i]; j++) {
-            char temp = mymap.at(from[i]).top();
-            mymap.at(from[i]).pop();
+            if (amount[i] == 1) {
+                char temp = mymap.at(from[i]).top();
+                mymap.at(from[i]).pop();
+                mymap.at(to[i]).push(temp);
+            } else {
+                char temp = mymap.at(from[i]).top();
+                mymap.at(from[i]).pop();
+                temp_stack.push(temp);
+            }
+        }
+
+        while (!temp_stack.empty()) {
+            char temp = temp_stack.top();
+            temp_stack.pop();
             mymap.at(to[i]).push(temp);
         }
     }
