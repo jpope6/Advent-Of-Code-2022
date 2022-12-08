@@ -76,9 +76,7 @@ int main() {
 
             int score = left_count * right_count * up_count * down_count;
 
-            if (score > highest) {
-                highest = score;
-            }
+            highest = max(highest, score);
         }
     }
 
