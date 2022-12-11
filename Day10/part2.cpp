@@ -2,15 +2,15 @@
 
 using namespace std;
 
-void drawSquare(int position[3], int& index, int& count, vector<string>& s) {
-    int row = index % 6;
-    int col = index % 40;
+void drawPixel(int X, int cycle, vector<string>& grid) {
+    int row = (cycle - 1) % 6;
+    int col = (cycle - 1) % 40;
 
     cout << row << ", " << col << endl;
 
-    for (int i = 0; i < 3; i++) {
-        if (col == position[i]) {
-            s[row][col] = '#';
+    for (int x : {X - 1, X, X + 1}) {
+        if (col == x) {
+            grid[row][col] = '#';
         }
     }
 }
@@ -39,36 +39,20 @@ int main() {
         }
     }
 
-    grid.push_back(s);
-
-    int cycle = 1;
+    int cycle = 0;
     int X = 1;
 
-    int index = 0;
-
-    int position[3] = {0, 1, 2};
-
     for (int i = 0; i < directions.size(); i++) {
-        drawSquare(position, index, X, grid);
         if (directions[i] == "noop") {
-            index++;
+            cycle++;
+            drawPixel(X, cycle, grid);
         } else {
-            int num = stoi(directions[i].substr(5, directions[i].length() - 1));
-            index++;
+            cycle++;
+            drawPixel(X, cycle, grid);
 
-            // cout << num << endl;
-
-            drawSquare(position, index, X, grid);
-            X = X + num;
-            index++;
-
-            // cout << X << endl;
-
-            position[0] = X - 1;
-            position[1] = X;
-            position[2] = X + 1;
-
-            // cout << position[0] << ", " << position[1] << ", " << position[2] << endl;
+            cycle++;
+            drawPixel(X, cycle, grid);
+            X = X + stoi(directions[i].substr(5, directions[i].length() - 4));
         }
     }
 
@@ -85,3 +69,4 @@ int main() {
         cout << endl;
     }
 }
+    
