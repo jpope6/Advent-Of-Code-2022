@@ -40,7 +40,6 @@ def main():
         if line[0] == "$":
             if line[1] == "ls":
                 pass
-                # print("bing bong")
             else:
                 if line[2] == "..":
                     curr = curr.parent
