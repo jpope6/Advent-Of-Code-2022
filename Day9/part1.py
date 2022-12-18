@@ -26,27 +26,19 @@ for line in lines:
             head[1] -= 1
 
         if head[0] - tail[0] == 2:
-            if head[1] != tail[1]:
-                tail[1] += head[1] - tail[1]
-
+            tail[1] = head[1]
             tail[0] += 1
 
         if head[0] - tail[0] == -2:
-            if head[1] != tail[1]:
-                tail[1] += head[1] - tail[1]
-
+            tail[1] = head[1]
             tail[0] -= 1
 
         if head[1] - tail[1] == 2:
-            if head[0] != tail[0]:
-                tail[0] += head[0] - tail[0]
-
+            tail[0] = head[0]
             tail[1] += 1
 
         if head[1] - tail[1] == -2:
-            if head[0] != tail[0]:
-                tail[0] += head[0] - tail[0]
-
+            tail[0] = head[0]
             tail[1] -= 1
 
         visited.add((tail[0], tail[1]))
