@@ -5,6 +5,7 @@ class Monkey:
         self.test = test
         self.true_monkey = true_monkey
         self.false_monkey = false_monkey
+        self.inspect_count = 0
 
     def doOperation(self, worry):
         symbol = self.operation[0]
@@ -13,13 +14,15 @@ class Monkey:
         if num == "old":
             num = worry
 
-        return eval(f"{worry}{symbol}{num}")
+        return int(eval(f"{worry}{symbol}{num}"))
 
     def doTest(self, worry):
         if worry % self.test == 0:
-            pass
+            print(true_monkey)
+            return true_monkey
         else:
-            pass
+            print(false_monkey)
+            return false_monkey
 
 
 directions = []
@@ -62,3 +65,13 @@ for direction in directions:
                 false_monkey = int(line[5])
 
     monkeys.append(Monkey(items, operation, test, true_monkey, false_monkey))
+
+for i in range(len(monkeys) - 1):
+    while len(monkeys[i].items) > 0:
+        num = monkeys[i].items.pop(0)
+        num = monkeys[i].doOperation(num) // 3
+
+        monkeys[monkeys[i].doTest(num)].items.append(num)
+
+for monkey in monkeys:
+    print(monkey.items)
